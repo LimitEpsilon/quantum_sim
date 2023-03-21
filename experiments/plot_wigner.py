@@ -25,7 +25,7 @@ H = [[H0, tlist], [H1, alpha], [H2, np.conjugate(alpha)]]
 # start in the ground (vacuum) state
 psi0 = basis(N, 0)
 
-decay = 1.0
+decay = 0.2
 
 c_ops = [decay * b]
 
@@ -55,4 +55,4 @@ axes[1].set_xlim([-5, 5])
 axes[1].set_ylim([-5, 5])
 axes[1].set_title('With loss')
 
-plt.savefig('squeezed_decay_1.0.png', bbox_inches='tight')
+plt.savefig('squeezed_decay_0.2.png', bbox_inches='tight')
