@@ -146,28 +146,28 @@
 
 \begin{frame}[c]
   \frametitle{Background: Quantization of the Maxwell Equations}
-\[
-  \vec{E}=-\nabla\phi-\partial_{t}\vec{A}\qquad
-  \vec{B}=\nabla\times\vec{A}\qquad
-  \text{The potentials}
-\]
-\onslide+<2->
-\[
-  \left(\nabla^{2}-\frac{1}{c^{2}}\partial_{t}^{2}\right)\vec{A}=-\mu_{0}\underbracket{\vec{J}}_{=0}-\nabla(\partial_{t}\phi+\underbracket{\nabla\cdot\vec{A}}_{=0}),\qquad
-  \nabla^{2}\phi=-\underbracket{\rho}_{=0}-\partial_{t}(\underbracket{\nabla\cdot\vec{A}}_{=0})
-\]
-\onslide+<3->
-\begin{empheq}[box=\tcbhighmath]{align*}
-  \vec{A}=\vec{\alpha}e^{i(\mathbf{k}\cdot\vec{r}-\omega_{\mathbf{k}}t)}\Rightarrow\omega_{\mathbf{k}}^{2}=c^{2}k^{2}\wedge\vec{\alpha}\cdot\mathbf{k}=0\qquad
-  \text{Harmonic Oscillator}\\
-  \vec{A}_{\mathbf{k},\lambda}=\vec{e}_{\mathbf{k},\lambda}\mathsf{Re}\{\alpha_{\mathbf{k},\lambda}e^{i(\mathbf{k}\cdot\vec{r}-ckt)}\}(\mathbf{k}=2\pi(m,n,l)/L,\lambda=1,2)\quad\text{Per-mode}\\
-  \hat{\alpha}_{\mathbf{k},\lambda}=(2\hbar/\varepsilon_{0}L^{3}ck)^{1/2}\hat{a}_{\mathbf{k},\lambda}\qquad
-  \text{Annihilation operator for each mode}
-\end{empheq}
+  \[
+    \vec{E}=-\nabla\phi-\partial_{t}\vec{A}\qquad
+    \vec{B}=\nabla\times\vec{A}\qquad
+    \text{The potentials}
+  \]
+  \onslide+<2->
+  \[
+    \left(\nabla^{2}-\frac{1}{c^{2}}\partial_{t}^{2}\right)\vec{A}=-\mu_{0}\underbracket{\vec{J}}_{=0}-\nabla(\partial_{t}\phi+\underbracket{\nabla\cdot\vec{A}}_{=0}),\qquad
+    \nabla^{2}\phi=-\underbracket{\rho}_{=0}-\partial_{t}(\underbracket{\nabla\cdot\vec{A}}_{=0})
+  \]
+  \onslide+<3->
+  \begin{empheq}[box=\tcbhighmath]{align*}
+    \vec{A}=\vec{\alpha}e^{i(\mathbf{k}\cdot\vec{r}-\omega_{\mathbf{k}}t)}\Rightarrow\omega_{\mathbf{k}}^{2}=c^{2}k^{2}\wedge\vec{\alpha}\cdot\mathbf{k}=0\qquad
+    \text{Harmonic Oscillator}\\
+    \vec{A}_{\mathbf{k},\lambda}=\vec{e}_{\mathbf{k},\lambda}\mathsf{Re}\{\alpha_{\mathbf{k},\lambda}e^{i(\mathbf{k}\cdot\vec{r}-ckt)}\}(\mathbf{k}=2\pi(m,n,l)/L,\lambda=1,2)\quad\text{Per-mode}\\
+    \hat{\alpha}_{\mathbf{k},\lambda}=(2\hbar/\varepsilon_{0}L^{3}ck)^{1/2}\hat{a}_{\mathbf{k},\lambda}\qquad
+    \text{Annihilation operator for each mode}
+  \end{empheq}
 \end{frame}
 
 \begin{frame}[c]
-\frametitle{Background: Squeezing, Wigner Function}
+  \frametitle{Background: Squeezing, Wigner Function}
   \[\ket{\psi}\mapsto S(\zeta)\ket{\psi}\qquad
     \text{Unitary transformation}
   \]
@@ -178,66 +178,66 @@
     \text{What do you squeeze? The ``pdf''}
   \]
   \pause
-\begin{empheq}[box=\tcbhighmath]{align*}
-  W(x,p)=\frac{1}{\pi\hbar}\int_{-\infty}^{\infty}\psi^{*}(x+y)\psi(x-y)e^{2ipy/\hbar}dy\qquad
+  \begin{empheq}[box=\tcbhighmath]{align*}
+    W(x,p)=\frac{1}{\pi\hbar}\int_{-\infty}^{\infty}\psi^{*}(x+y)\psi(x-y)e^{2ipy/\hbar}dy\qquad
     \text{Wigner function}
-\end{empheq}
-Intuitively,
-\[
+  \end{empheq}
+  Intuitively,
+  \[
     \frac{1}{\pi\hbar}\int_{-\infty}^{\infty}\underbrace{e^{-i\alpha(x+y)^{2}}}_{\text{second order}}\psi^{*}(x+y)\psi(x-y)e^{i\alpha(x-y)^{2}}e^{2ipy/\hbar}dy=W\underbrace{(x,p-2\hbar\alpha x)}_{\text{linear}}
-\]
+  \]
 \end{frame}
 
 \begin{frame}[c]
-\frametitle{Background: Parametric amplification}
-\begin{columns}
-\begin{column}{0.5\textwidth}
-\begin{tikzpicture}[>=stealth]
-  % Define the coordinates
-  \coordinate (O) at (-1.5,3);
-  \coordinate (O') at (-1.5,1);
-  \coordinate (P) at (0,3);
-  \coordinate (P') at (0,1);
-  \coordinate (C) at (1,2);
-  \coordinate (Q) at (2,3);
-  \coordinate (R) at (3.5,3);
+  \frametitle{Background: Parametric amplification}
+  \begin{columns}
+    \begin{column}{0.5\textwidth}
+      \begin{tikzpicture}[>=stealth]
+        % Define the coordinates
+        \coordinate (O) at (-1.5,3);
+        \coordinate (O') at (-1.5,1);
+        \coordinate (P) at (0,3);
+        \coordinate (P') at (0,1);
+        \coordinate (C) at (1,2);
+        \coordinate (Q) at (2,3);
+        \coordinate (R) at (3.5,3);
 
-  % Draw the incident wave
-  \draw[ultra thick, blue, ->] (O) -- (P) node[midway, above]
-  {$\omega_{s}=\omega$};
-  \draw[ultra thick, blue, ->] (O') -- (P') node[midway, above] {$\omega_{p}=2\omega$};
+        % Draw the incident wave
+        \draw[ultra thick, blue, ->] (O) -- (P) node[midway, above]
+        {$\omega_{s}=\omega$};
+        \draw[ultra thick, blue, ->] (O') -- (P') node[midway, above] {$\omega_{p}=2\omega$};
 
-  % Draw the second harmonic wave
-  \draw[ultra thick, red, ->] (Q) -- (R) node[midway, above] {$\omega_{i}$};
+        % Draw the second harmonic wave
+        \draw[ultra thick, red, ->] (Q) -- (R) node[midway, above] {$\omega_{i}$};
 
-  % Draw the crystal
-  \draw[thick, dashed] (0,0) rectangle (2,4);
+        % Draw the crystal
+        \draw[thick, dashed] (0,0) rectangle (2,4);
 
-  % Draw the labels
-  \node[above] at (C) {$\chi^{(2)}$};
-  \node[below] at (C) {Crystal};
-  \node[below right, red] at (Q) {$=\omega_{p}-\omega_{s}$};
-\end{tikzpicture}
-\end{column}
-\begin{column}{0.5\textwidth}
-\begin{empheq}[box=\tcbhighmath]{align*}
-     &\underline{\text{Hamiltonian inside cavity}}\\
-    \hat{H}=&\hbar\omega \hat{b}^{\dag}\hat{b}+\hbar\omega_{P}\hat{a}^{\dag}\hat{a}+\\
-            &\underbrace{i\hbar\chi^{(2)}(\hat{b}^{2}\hat{a}^{\dag}-(\hat{b}^{\dag})^{2}\hat{a})}_{\text{second-order interaction}}\\
-           \Rightarrow&\hbar\omega\hat{b}^{\dag}\hat{b}+\mathsf{Im}\{\underbrace{ce^{i\omega_{p}t}}_{\text{approx. }\hat{a}}\hat{b}^{2}\}
-\end{empheq}
-\end{column}
-\end{columns}
-Measure the photocurrent generated by the idler photon using a balanced homodyne detector
+        % Draw the labels
+        \node[above] at (C) {$\chi^{(2)}$};
+        \node[below] at (C) {Crystal};
+        \node[below right, red] at (Q) {$=\omega_{p}-\omega_{s}$};
+      \end{tikzpicture}
+    \end{column}
+    \begin{column}{0.5\textwidth}
+      \begin{empheq}[box=\tcbhighmath]{align*}
+        &\underline{\text{Hamiltonian inside cavity}}\\
+        \hat{H}=&\hbar\omega \hat{b}^{\dag}\hat{b}+\hbar\omega_{P}\hat{a}^{\dag}\hat{a}+\\
+        &\underbrace{i\hbar\chi^{(2)}(\hat{b}^{2}\hat{a}^{\dag}-(\hat{b}^{\dag})^{2}\hat{a})}_{\text{second-order interaction}}\\
+        \Rightarrow&\hbar\omega\hat{b}^{\dag}\hat{b}+\mathsf{Im}\{\underbrace{ce^{i\omega_{p}t}}_{\text{approx. }\hat{a}}\hat{b}^{2}\}
+      \end{empheq}
+    \end{column}
+  \end{columns}
+  Measure the photocurrent generated by the idler photon using a balanced homodyne detector
 \end{frame}
 \begin{frame}[c]
   \frametitle{Background: Lindblad master equation for simulation}
   \[
     \text{Interaction with the environment: Lindblad Equation}
   \]
-\begin{empheq}[box=\tcbhighmath]{align*}
+  \begin{empheq}[box=\tcbhighmath]{align*}
     \partial_{t}\rho=-\frac{i}{\hbar}\underbrace{[H_{sys},\rho]}_{\text{system}}+\underbrace{\frac{1}{2}\sum_{n}(2C_{n}\rho C_{n}^{\dag}-\rho C_{n}^{\dag}C_{n}-C_{n}^{\dag} C_{n}\rho)}_{\text{environment}}
-\end{empheq}
+  \end{empheq}
   \pause
   If we let $C=\hat{b}$, when $\hat{b}$ is the annihilation operator, this means that the system \underline{loses} photons to the environment.
 \end{frame}
@@ -248,20 +248,20 @@ Measure the photocurrent generated by the idler photon using a balanced homodyne
   \begin{columns}
     \begin{column}{0.5\textwidth}
       \begin{block}{How to solve}
-      \begin{itemize}
-        \item Projection onto finite dimemsional Hilbert space spanned by $\{\ket{i}\}_{0\le i\le n}$
-        \item Use the open-source Python library QuTiP to solve the Lindblad equation
-      \end{itemize}
+        \begin{itemize}
+          \item Projection onto finite dimemsional Hilbert space spanned by $\{\ket{i}\}_{0\le i\le n}$
+          \item Use the open-source Python library QuTiP to solve the Lindblad equation
+        \end{itemize}
       \end{block}
     \end{column}
     \pause
     \begin{column}{0.5\textwidth}
       \begin{block}{What to solve}
-      \begin{itemize}
-        \item No interaction with environment
-        \item Interaction with $C=\sqrt{\gamma}\hat{b}$ (Thermal loss)
-        \item Higher order generation
-      \end{itemize}
+        \begin{itemize}
+          \item No interaction with environment
+          \item Interaction with $C=\sqrt{\gamma}\hat{b}$ (Thermal loss)
+          \item Higher order generation
+        \end{itemize}
       \end{block}
     \end{column}
   \end{columns}
@@ -271,19 +271,19 @@ Measure the photocurrent generated by the idler photon using a balanced homodyne
 \begin{frame}[c]
   \frametitle{Comparison between lossy and non-lossy probabilities}
   \begin{columns}
-  \begin{column}{0.5\linewidth}
-  \begin{figure}
-  \includegraphics[width=0.7\linewidth]{squeezed_decay_0.2.png}
-  \includegraphics[width=0.7\linewidth]{squeezed_decay_0.5.png}
-  \includegraphics[width=0.7\linewidth]{squeezed_decay_1.0.png}
-  \end{figure}
-  \end{column}
-  \begin{column}{0.5\linewidth}
-    \begin{itemize}
-      \item Adjust $\sqrt{\gamma}$ in $C=\sqrt{\gamma}\hat{b}$ of the Lindblad equation. $\sqrt{\gamma}=0.2,0.5,1.0$, and the plots are taken after 5 seconds of time evolution.
-      \item Since the environment absorbs the photons, the nonlinear effects are diminished.
-    \end{itemize}
-  \end{column}
+    \begin{column}{0.5\linewidth}
+      \begin{figure}
+        \includegraphics[width=0.7\linewidth]{squeezed_decay_0.2.png}
+        \includegraphics[width=0.7\linewidth]{squeezed_decay_0.5.png}
+        \includegraphics[width=0.7\linewidth]{squeezed_decay_1.0.png}
+      \end{figure}
+    \end{column}
+    \begin{column}{0.5\linewidth}
+      \begin{itemize}
+        \item Adjust $\sqrt{\gamma}$ in $C=\sqrt{\gamma}\hat{b}$ of the Lindblad equation. $\sqrt{\gamma}=0.2,0.5,1.0$, and the plots are taken after 5 seconds of time evolution.
+        \item Since the environment absorbs the photons, the nonlinear effects are diminished.
+      \end{itemize}
+    \end{column}
   \end{columns}
 \end{frame}
 
@@ -291,11 +291,11 @@ Measure the photocurrent generated by the idler photon using a balanced homodyne
   \frametitle{Third-order generation?}
   \begin{columns}
     \begin{column}{0.5\linewidth}
-    \begin{figure}
-    \includegraphics[width=0.7\linewidth]{third_decay_0.2.png}
-    \includegraphics[width=0.7\linewidth]{third_decay_0.5.png}
-    \includegraphics[width=0.7\linewidth]{third_decay_1.0.png}
-    \end{figure}
+      \begin{figure}
+        \includegraphics[width=0.7\linewidth]{third_decay_0.2.png}
+        \includegraphics[width=0.7\linewidth]{third_decay_0.5.png}
+        \includegraphics[width=0.7\linewidth]{third_decay_1.0.png}
+      \end{figure}
     \end{column}
     \begin{column}{0.5\linewidth}
       \begin{itemize}
@@ -310,23 +310,23 @@ Measure the photocurrent generated by the idler photon using a balanced homodyne
 \begin{frame}[c]
   \frametitle{Summary}
   \begin{itemize}
-     \item Studied: what are squeezed states, how to generate them
-     \item Tried out: the QuTiP library to simulate interaction with the environment and higher order generation
-     \item Plans: Use the coherent state basis to give an analytical explanation for the third-order generation distribution.
-     \item All results + this slide: available on \href{https://github.com/LimitEpsilon/quantum_sim}{GitHub}
+    \item Studied: what are squeezed states, how to generate them
+    \item Tried out: the QuTiP library to simulate interaction with the environment and higher order generation
+    \item Plans: Use the coherent state basis to give an analytical explanation for the third-order generation distribution.
+    \item All results + this slide: available on \href{https://github.com/LimitEpsilon/quantum_sim}{GitHub}
   \end{itemize}
 \end{frame}
 
 \begin{frame}[c]
-\frametitle{References}
-\footnotesize{
-\begin{thebibliography}{99} % Beamer does not support BibTeX so references must be nserted manually as below
-\bibitem[Loudon]{p1} R. Loudon, \textit{The Quantum Theory of Light.} Oxford, UK: OUP Oxford, 2000.
-\bibitem[Lindblad]{p2} H. Seifoory, S. Doutre, and M. M. Dignam, ``The properties of squeezed optical states created in lossy cavities,'' 2016. [Online]. Available: arXiv:1608.05005[quant-ph].
-\bibitem[QuTiP]{p3} J. R. Johanssona, P. D. Nationa, F. Nori, ``QuTiP: An open-source Python framework for the dynamics of open quantum
-systems,'' 2011. [Online]. Available: arXiv:1110.0573[quant-ph].
-\end{thebibliography}
-}
+  \frametitle{References}
+  \footnotesize{
+    \begin{thebibliography}{99} % Beamer does not support BibTeX so references must be nserted manually as below
+      \bibitem[Loudon]{p1} R. Loudon, \textit{The Quantum Theory of Light.} Oxford, UK: OUP Oxford, 2000.
+      \bibitem[Lindblad]{p2} H. Seifoory, S. Doutre, and M. M. Dignam, ``The properties of squeezed optical states created in lossy cavities,'' 2016. [Online]. Available: arXiv:1608.05005[quant-ph].
+      \bibitem[QuTiP]{p3} J. R. Johanssona, P. D. Nationa, F. Nori, ``QuTiP: An open-source Python framework for the dynamics of open quantum
+      systems,'' 2011. [Online]. Available: arXiv:1110.0573[quant-ph].
+    \end{thebibliography}
+  }
 \end{frame}
 
 \begin{frame}[c]

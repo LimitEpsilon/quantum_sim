@@ -17,13 +17,13 @@ H2 = b * b * b / 6
 
 coupling = 0.2
 
-alpha = coupling * np.exp(-2j * tlist)
+alpha = coupling * np.exp(-3j * tlist)
 
 # Hamiltonian for evolution into squeezed state
 H = [[H0, tlist], [H1, alpha], [H2, np.conjugate(alpha)]]
 
 # start in the ground (vacuum) state
-psi0 = basis(N, 0)
+psi0 = basis(N, 1)
 
 decay = 0.2
 
@@ -38,7 +38,7 @@ fig, axes = plt.subplots(1, 2, figsize=(10, 5))
 
 # plot the Wigner function of the non-lossy evolution
 # plt.subplot(1, 2, 1)
-psi = output.states[49]
+psi = output.states[99]
 xvec = np.arange(-100., 100.) * 5. / 100
 W = wigner(psi, xvec, xvec)
 c = axes[0].contourf(xvec, xvec, W, 100)
@@ -55,4 +55,4 @@ axes[1].set_xlim([-5, 5])
 axes[1].set_ylim([-5, 5])
 axes[1].set_title('With loss')
 
-plt.savefig('squeezed_decay_0.2.png', bbox_inches='tight')
+plt.savefig('squeezed_decay_0.2_re.png', bbox_inches='tight')

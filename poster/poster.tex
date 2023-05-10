@@ -1,0 +1,320 @@
+% Gemini theme
+% https://github.com/anishathalye/gemini
+
+\documentclass[final]{beamer}
+
+% ====================
+% Packages
+% ====================
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[size=custom,width=120,height=72,scale=1.0]{beamerposter}
+\usetheme{gemini}
+\usecolortheme{gemini}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\usepackage{anyfontsize}
+
+\usepackage{empheq}
+\usepackage[many]{tcolorbox}
+
+%%% Math settings
+\usepackage{amssymb,amsmath,mathtools}
+
+% bra-ket
+\newcommand*\bra[1]{\langle{#1}|}
+\newcommand*\ket[1]{|{#1}\rangle}
+
+% ====================
+% Lengths
+% ====================
+
+% If you have N columns, choose \sepwidth and \colwidth such that
+% (N+1)*\sepwidth + N*\colwidth = \paperwidth
+\newlength{\sepwidth}
+\newlength{\colwidth}
+\setlength{\sepwidth}{0.025\paperwidth}
+\setlength{\colwidth}{0.3\paperwidth}
+
+\newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
+
+% ====================
+% Title
+% ====================
+
+\title{Analysis of Squeezed Vacuum States of Light by Means of Wigner Functions}
+
+\author{Joonhyup Lee \inst{1} \and Yoonchan Jeong \inst{1}}
+
+\institute[shortinst]{\inst{1} Seoul National University, Department of ECE}
+
+% ====================
+% Footer (optional)
+% ====================
+
+\footercontent{
+  \hfill
+  2023-1 Undergraduate Final Project
+  \hfill
+}
+% (can be left out to remove footer)
+
+% ====================
+% Logo (optional)
+% ====================
+
+% use this to include logos on the left and/or right side of the header:
+\logoright{\includegraphics[height=7cm]{laser-symbol.jpg}}
+\logoleft{\includegraphics[height=7cm]{snu-symbol.png}}
+
+% ====================
+% Body
+% ====================
+
+\begin{document}
+
+\begin{frame}[t]
+  \begin{columns}[t]
+    \separatorcolumn
+
+    \begin{column}{\colwidth}
+      \begin{block}{What is Squeezed Light?}
+        \[
+          \Delta x\Delta p \ge \frac{\hbar}{2}\qquad
+          \text{The Uncertainty Principle}
+        \]
+        \[
+          \vec{E}_{\mathbf{k},\lambda}(\vec{r},t)=\vec{e}_{\mathbf{k},\lambda}(p\cos{(\mathbf{k}\cdot\vec{r}-ckt)}+q\sin{(\mathbf{k}\cdot\vec{r}-ckt)})\quad
+          \text{TEM field}
+        \]
+        \[
+          \Delta p\Delta q \ge \frac{\hbar ck}{2\varepsilon_{0}L^{3}}\qquad
+          \text{Uncertainty Principle for }\vec{E}
+        \]
+        \[
+          \text{Rewrite }p\cos{\theta(t)}+q\sin{\theta(t)}=A\sin{(\theta(t)+\phi)}
+        \]
+        \[
+          \Delta A\Delta \phi\ge \frac{\hbar ck}{2\varepsilon_{0}L^{3}}\qquad
+          \text{Uncertainty Principle for }\phi\text{ and }A
+        \]
+        \[
+          \text{We want to modulate }\Delta A\text{ and }\Delta \phi\text{ while preserving the uncertainty}
+        \]
+      \end{block}
+
+      \begin{block}{Background: Quantization of the Maxwell Equations}
+        \[
+          \vec{E}=-\nabla\phi-\partial_{t}\vec{A}\qquad
+          \vec{B}=\nabla\times\vec{A}\qquad
+          \text{The potentials}
+        \]
+        \[
+          \left(\nabla^{2}-\frac{1}{c^{2}}\partial_{t}^{2}\right)\vec{A}=-\mu_{0}\underbracket{\vec{J}}_{=0}-\nabla(\partial_{t}\phi+\underbrace{\nabla\cdot\vec{A}}_{=0}),\qquad
+          \nabla^{2}\phi=-\underbracket{\rho}_{=0}-\partial_{t}(\underbrace{\nabla\cdot\vec{A}}_{=0})
+        \]
+        \begin{empheq}[box=\tcbhighmath]{align*}
+          \vec{A}=\vec{\alpha}e^{i(\mathbf{k}\cdot\vec{r}-\omega_{\mathbf{k}}t)}\Rightarrow\omega_{\mathbf{k}}^{2}=c^{2}k^{2}\wedge\vec{\alpha}\cdot\mathbf{k}=0\qquad
+          \text{Harmonic Oscillator}\\
+          \vec{A}_{\mathbf{k},\lambda}=\vec{e}_{\mathbf{k},\lambda}\mathsf{Re}\{\alpha_{\mathbf{k},\lambda}e^{i(\mathbf{k}\cdot\vec{r}-ckt)}\}(\mathbf{k}=2\pi(m,n,l)/L,\lambda=1,2)\quad\text{Per-mode}\\
+          \hat{\alpha}_{\mathbf{k},\lambda}=(2\hbar/\varepsilon_{0}L^{3}ck)^{1/2}\hat{a}_{\mathbf{k},\lambda}\qquad
+          \text{Annihilation operator for each mode}
+        \end{empheq}
+      \end{block}
+
+      \begin{block}{Background: Squeezing, Wigner Function}
+        \[\ket{\psi}\mapsto S(\zeta)\ket{\psi}\qquad
+          \text{Unitary transformation}
+        \]
+        \[S(\zeta)=\exp(i\cdot\mathsf{Im}\{\zeta^{*} \hat{a}^{2}\})\qquad
+          \text{Squeeze by }e^{|\zeta|}\:\text{rotate by}\arg{\zeta}/2
+        \]
+        \[
+          \text{What do you squeeze? The ``pdf''}
+        \]
+        \begin{empheq}[box=\tcbhighmath]{align*}
+          W(x,p)=\frac{1}{\pi\hbar}\int_{-\infty}^{\infty}\psi^{*}(x+y)\psi(x-y)e^{2ipy/\hbar}dy\qquad
+          \text{Wigner function}
+        \end{empheq}
+      \end{block}
+    \end{column}
+
+    \separatorcolumn
+
+    \begin{column}{\colwidth}
+
+      \begin{block}{A block containing an enumerated list}
+
+        Vivamus congue volutpat elit non semper. Praesent molestie nec erat ac
+        interdum. In quis suscipit erat. \textbf{Phasellus mauris felis, molestie
+          ac pharetra quis}, tempus nec ante. Donec finibus ante vel purus mollis
+        fermentum. Sed felis mi, pharetra eget nibh a, feugiat eleifend dolor. Nam
+        mollis condimentum purus quis sodales. Nullam eu felis eu nulla eleifend
+        bibendum nec eu lorem. Vivamus felis velit, volutpat ut facilisis ac,
+        commodo in metus.
+
+        \begin{enumerate}
+          \item \textbf{Morbi mauris purus}, egestas at vehicula et, convallis
+                accumsan orci. Orci varius natoque penatibus et magnis dis parturient
+                montes, nascetur ridiculus mus.
+          \item \textbf{Cras vehicula blandit urna ut maximus}. Aliquam blandit nec
+                massa ac sollicitudin. Curabitur cursus, metus nec imperdiet bibendum,
+                velit lectus faucibus dolor, quis gravida metus mauris gravida turpis.
+          \item \textbf{Vestibulum et massa diam}. Phasellus fermentum augue non
+                nulla accumsan, non rhoncus lectus condimentum.
+        \end{enumerate}
+
+      \end{block}
+
+      \begin{block}{Fusce aliquam magna velit}
+
+        Et rutrum ex euismod vel. Pellentesque ultricies, velit in fermentum
+        vestibulum, lectus nisi pretium nibh, sit amet aliquam lectus augue vel
+        velit. Suspendisse rhoncus massa porttitor augue feugiat molestie. Sed
+        molestie ut orci nec malesuada. Sed ultricies feugiat est fringilla
+        posuere.
+
+        \begin{figure}
+          \centering
+          \begin{tikzpicture}
+            \begin{axis}[
+                scale only axis,
+                no markers,
+                domain=0:2*pi,
+                samples=100,
+                axis lines=center,
+                axis line style={-},
+                ticks=none]
+              \addplot[red] {sin(deg(x))};
+              \addplot[blue] {cos(deg(x))};
+            \end{axis}
+          \end{tikzpicture}
+          \caption{Another figure caption.}
+        \end{figure}
+
+      \end{block}
+
+      \begin{block}{Nam cursus consequat egestas}
+
+        Nulla eget sem quam. Ut aliquam volutpat nisi vestibulum convallis. Nunc a
+        lectus et eros facilisis hendrerit eu non urna. Interdum et malesuada fames
+        ac ante \textit{ipsum primis} in faucibus. Etiam sit amet velit eget sem
+        euismod tristique. Praesent enim erat, porta vel mattis sed, pharetra sed
+        ipsum. Morbi commodo condimentum massa, \textit{tempus venenatis} massa
+        hendrerit quis. Maecenas sed porta est. Praesent mollis interdum lectus,
+        sit amet sollicitudin risus tincidunt non.
+
+        Etiam sit amet tempus lorem, aliquet condimentum velit. Donec et nibh
+        consequat, sagittis ex eget, dictum orci. Etiam quis semper ante. Ut eu
+        mauris purus. Proin nec consectetur ligula. Mauris pretium molestie
+        ullamcorper. Integer nisi neque, aliquet et odio non, sagittis porta justo.
+
+        \begin{itemize}
+          \item \textbf{Sed consequat} id ante vel efficitur. Praesent congue massa
+                sed est scelerisque, elementum mollis augue iaculis.
+                \begin{itemize}
+                  \item In sed est finibus, vulputate
+                        nunc gravida, pulvinar lorem. In maximus nunc dolor, sed auctor eros
+                        porttitor quis.
+                  \item Fusce ornare dignissim nisi. Nam sit amet risus vel lacus
+                        tempor tincidunt eu a arcu.
+                  \item Donec rhoncus vestibulum erat, quis aliquam leo
+                        gravida egestas.
+                \end{itemize}
+          \item \textbf{Sed luctus, elit sit amet} dictum maximus, diam dolor
+                faucibus purus, sed lobortis justo erat id turpis.
+          \item \textbf{Pellentesque facilisis dolor in leo} bibendum congue.
+                Maecenas congue finibus justo, vitae eleifend urna facilisis at.
+        \end{itemize}
+
+      \end{block}
+
+    \end{column}
+
+    \separatorcolumn
+
+    \begin{column}{\colwidth}
+
+      \begin{exampleblock}{A highlighted block containing some math}
+
+        A different kind of highlighted block.
+
+        $$
+          \int_{-\infty}^{\infty} e^{-x^2}\,dx = \sqrt{\pi}
+        $$
+
+        Interdum et malesuada fames $\{1, 4, 9, \ldots\}$ ac ante ipsum primis in
+        faucibus. Cras eleifend dolor eu nulla suscipit suscipit. Sed lobortis non
+        felis id vulputate.
+
+        \heading{A heading inside a block}
+
+        Praesent consectetur mi $x^2 + y^2$ metus, nec vestibulum justo viverra
+        nec. Proin eget nulla pretium, egestas magna aliquam, mollis neque. Vivamus
+        dictum $\mathbf{u}^\intercal\mathbf{v}$ sagittis odio, vel porta erat
+        congue sed. Maecenas ut dolor quis arcu auctor porttitor.
+
+        \heading{Another heading inside a block}
+
+        Sed augue erat, scelerisque a purus ultricies, placerat porttitor neque.
+        Donec $P(y \mid x)$ fermentum consectetur $\nabla_x P(y \mid x)$ sapien
+        sagittis egestas. Duis eget leo euismod nunc viverra imperdiet nec id
+        justo.
+
+      \end{exampleblock}
+
+      \begin{block}{Nullam vel erat at velit convallis laoreet}
+
+        Class aptent taciti sociosqu ad litora torquent per conubia nostra, per
+        inceptos himenaeos. Phasellus libero enim, gravida sed erat sit amet,
+        scelerisque congue diam. Fusce dapibus dui ut augue pulvinar iaculis.
+
+        \begin{table}
+          \centering
+          \begin{tabular}{l r r c}
+            \toprule
+            \textbf{First column} & \textbf{Second column} & \textbf{Third column} & \textbf{Fourth} \\
+            \midrule
+            Foo                   & 13.37                  & 384,394               & $\alpha$        \\
+            Bar                   & 2.17                   & 1,392                 & $\beta$         \\
+            Baz                   & 3.14                   & 83,742                & $\delta$        \\
+            Qux                   & 7.59                   & 974                   & $\gamma$        \\
+            \bottomrule
+          \end{tabular}
+          \caption{A table caption.}
+        \end{table}
+
+        Donec quis posuere ligula. Nunc feugiat elit a mi malesuada consequat. Sed
+        imperdiet augue ac nibh aliquet tristique. Aenean eu tortor vulputate,
+        eleifend lorem in, dictum urna. Proin auctor ante in augue tincidunt
+        tempor. Proin pellentesque vulputate odio, ac gravida nulla posuere
+        efficitur. Aenean at velit vel dolor blandit molestie. Mauris laoreet
+        commodo quam, non luctus nibh ullamcorper in. Class aptent taciti sociosqu
+        ad litora torquent per conubia nostra, per inceptos himenaeos.
+
+        Nulla varius finibus volutpat. Mauris molestie lorem tincidunt, iaculis
+        libero at, gravida ante. Phasellus at felis eu neque suscipit suscipit.
+        Integer ullamcorper, dui nec pretium ornare, urna dolor consequat libero,
+        in feugiat elit lorem euismod lacus. Pellentesque sit amet dolor mollis,
+        auctor urna non, tempus sem.
+
+      \end{block}
+
+      \begin{block}{References}
+
+        \nocite{*}
+        \footnotesize{\bibliographystyle{plain}\bibliography{poster}}
+
+      \end{block}
+
+    \end{column}
+
+    \separatorcolumn
+  \end{columns}
+\end{frame}
+
+\end{document}
