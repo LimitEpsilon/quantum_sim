@@ -1,0 +1,91 @@
+%! TEX program = xelatex
+\documentclass{article}
+\usepackage{geometry}
+\geometry{
+ a4paper,
+ total={170mm,257mm},
+ left=20mm,
+ top=20mm,
+}
+\usepackage{setspace} % setstretch
+
+\usepackage{graphicx}
+\usepackage{csquotes}
+
+\usepackage{tabularray}
+\UseTblrLibrary{booktabs}
+\UseTblrLibrary{counter}
+
+\usepackage{biblatex}
+\addbibresource{citations.bib}
+
+%%% Math settings
+\usepackage{amssymb,amsmath,mathtools} % Before unicode-math
+\usepackage[math-style=TeX,bold-style=TeX]{unicode-math}
+\newtheorem{clm}{Claim}[section]
+
+%%% Font settings
+\setmainfont{Libertinus Serif}
+\setsansfont{Libertinus Sans}[Scale=MatchUppercase]
+\setmonofont{JuliaMono}[Scale=MatchLowercase]
+\setmathfont{Libertinus Math}
+\setmathfont{TeX Gyre Pagella Math}[range={\lbrace,\rbrace},Scale=1.1]
+
+%%% PL constructs
+\usepackage{ebproof}
+\ebproofset{left label template=\textsc{[\inserttext]}}
+
+% For simplebnf
+\newfontfamily{\fallbackfont}{EB Garamond}
+\DeclareTextFontCommand{\textfallback}{\fallbackfont}
+\usepackage{newunicodechar}
+\newunicodechar{⩴}{\textfallback{⩴}}
+
+\usepackage{simplebnf}[2022/05/08]
+\RenewDocumentCommand\SimpleBNFDefEq{}{\ensuremath{⩴}}
+
+% because of simplebnf
+\newcommand*\vbar{|}
+\newcommand*{\finto}{\xrightarrow{\text{\textrm{fin}}}}
+\newcommand*{\istype}{\mathrel{⩴}}
+\newcommand*{\ortype}{\mathrel{|}}
+
+% for complement
+\newcommand{\loverbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
+\newcommand*{\Reanalyze}{\textit{ReAnalyze}}
+
+\title{Constructing Set Constraints for ReScript}
+\author{Joonhyup Lee}
+\date{}
+\begin{document}
+\maketitle
+
+\section{Calculations}
+\begin{align*}
+  i\hbar\partial_{t}\rho &= \hbar\omega[a^{\dag}a, \rho]+\hbar\chi^{(2)}[\frac{\alpha^{*}e^{2i\omega t}a^{2}-\alpha e^{-2i\omega t}(a^{\dag})^{2}}{2i}, \rho]\\
+                       &= \hbar\omega[a^{\dag}a, \rho]+\frac{\hbar\chi^{(2)}}{2i}([\alpha^{*}e^{2i\omega t}a^{2}, \rho]-[\alpha e^{-2i\omega t}(a^{\dag})^{2}, \rho])
+\end{align*}
+
+Let $\rho=\exp(-i\omega ta^{\dag}a)\tilde{\rho}\exp(i\omega ta^{\dag}a)$, then
+\[\partial_{t}\tilde{\rho}=-\frac{\chi^{(2)}}{2}(\alpha^{*}[a^{2},\tilde{\rho}]-\alpha[(a^{\dag})^{2},\tilde{\rho}])\]
+
+We want to look at the time evolution of the Wigner quasiprobability distribution. 
+The Von Neumann equation above can be translated into a partial differential equation for the Wigner function by the following rules:
+
+\begin{align*}
+  a\rho&\leftrightarrow (z+\frac{1}{2}\partial_{z^{*}})W & z &\leftrightarrow q+ip\\
+  a^{\dag}\rho&\leftrightarrow (z^{*}-\frac{1}{2}\partial_{z})W & z^{*} &\leftrightarrow q-ip\\
+  \rho a&\leftrightarrow (z-\frac{1}{2}\partial_{z^{*}})W & \partial_{z} &\leftrightarrow \frac{1}{2}(\partial_{q}-i\partial_{p})\\
+  \rho a^{\dag}&\leftrightarrow (z^{*}-\frac{1}{2}\partial_{z})W & \partial_{z^{*}} &\leftrightarrow \frac{1}{2}(\partial_{q}+i\partial_{p})
+\end{align*}
+
+Then the Von Neumann equation turns into
+\[\partial_{t}W=-\frac{\chi^{(2)}}{2}(2\alpha z^{*}\partial_{z}W+2\alpha^{*}z\partial_{z^{*}}W)\]
+\printbibliography
+\end{document}
+%%% Local Variables: 
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% End:
