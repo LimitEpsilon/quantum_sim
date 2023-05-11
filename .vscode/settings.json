@@ -2,5 +2,6 @@
     "latex-workshop.synctex.afterBuild.enabled": true,
     "latex-workshop.latex.recipe.default": "lastUsed",
     "vim.overrideCopy": true,
-    "latex-workshop.latexindent.path": "/usr/local/texlive/2023/bin/x86_64-linux/latexindent"
+    "latex-workshop.latexindent.path": "/usr/local/texlive/2023/bin/x86_64-linux/latexindent",
+    "latex-workshop.latex.autoBuild.run": "never"
 }

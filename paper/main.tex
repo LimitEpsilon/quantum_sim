@@ -31,57 +31,130 @@
 \setmathfont{Libertinus Math}
 \setmathfont{TeX Gyre Pagella Math}[range={\lbrace,\rbrace},Scale=1.1]
 
-%%% PL constructs
-\usepackage{ebproof}
-\ebproofset{left label template=\textsc{[\inserttext]}}
-
-% For simplebnf
-\newfontfamily{\fallbackfont}{EB Garamond}
-\DeclareTextFontCommand{\textfallback}{\fallbackfont}
-\usepackage{newunicodechar}
-\newunicodechar{⩴}{\textfallback{⩴}}
-
-\usepackage{simplebnf}[2022/05/08]
-\RenewDocumentCommand\SimpleBNFDefEq{}{\ensuremath{⩴}}
-
-% because of simplebnf
-\newcommand*\vbar{|}
-\newcommand*{\finto}{\xrightarrow{\text{\textrm{fin}}}}
-\newcommand*{\istype}{\mathrel{⩴}}
-\newcommand*{\ortype}{\mathrel{|}}
-
 % for complement
 \newcommand{\loverbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
 
-\newcommand*{\Reanalyze}{\textit{ReAnalyze}}
+% rotated wigner function
+\newcommand*{\wigner}{W(\omega z, \omega^{-1}z^{*};t)}
 
-\title{Constructing Set Constraints for ReScript}
+\title{Analysis of Squeezed Vacuum States of Light by Means of Wigner Functions}
 \author{Joonhyup Lee}
 \date{}
 \begin{document}
 \maketitle
 
-\section{Calculations}
+\section{Second-order Squeezing}
 \begin{align*}
-  i\hbar\partial_{t}\rho &= \hbar\omega[a^{\dag}a, \rho]+\hbar\chi^{(2)}[\frac{\alpha^{*}e^{2i\omega t}a^{2}-\alpha e^{-2i\omega t}(a^{\dag})^{2}}{2i}, \rho]\\
-                       &= \hbar\omega[a^{\dag}a, \rho]+\frac{\hbar\chi^{(2)}}{2i}([\alpha^{*}e^{2i\omega t}a^{2}, \rho]-[\alpha e^{-2i\omega t}(a^{\dag})^{2}, \rho])
+  i\hbar\partial_{t}\rho & = \hbar\omega[a^{\dag}a, \rho]+\hbar\chi^{(2)}\left[\frac{\alpha^{*}e^{2i\omega t}a^{2}-\alpha e^{-2i\omega t}(a^{\dag})^{2}}{2i}, \rho\right] \\
+                         & = \hbar\omega[a^{\dag}a, \rho]+\frac{\hbar\chi^{(2)}}{2i}([\alpha^{*}e^{2i\omega t}a^{2}, \rho]-[\alpha e^{-2i\omega t}(a^{\dag})^{2}, \rho])
 \end{align*}
 
 Let $\rho=\exp(-i\omega ta^{\dag}a)\tilde{\rho}\exp(i\omega ta^{\dag}a)$, then
 \[\partial_{t}\tilde{\rho}=-\frac{\chi^{(2)}}{2}(\alpha^{*}[a^{2},\tilde{\rho}]-\alpha[(a^{\dag})^{2},\tilde{\rho}])\]
 
-We want to look at the time evolution of the Wigner quasiprobability distribution. 
+We want to look at the time evolution of the Wigner quasiprobability distribution.
 The Von Neumann equation above can be translated into a partial differential equation for the Wigner function by the following rules:
 
 \begin{align*}
-  a\rho&\leftrightarrow (z+\frac{1}{2}\partial_{z^{*}})W & z &\leftrightarrow q+ip\\
-  a^{\dag}\rho&\leftrightarrow (z^{*}-\frac{1}{2}\partial_{z})W & z^{*} &\leftrightarrow q-ip\\
-  \rho a&\leftrightarrow (z-\frac{1}{2}\partial_{z^{*}})W & \partial_{z} &\leftrightarrow \frac{1}{2}(\partial_{q}-i\partial_{p})\\
-  \rho a^{\dag}&\leftrightarrow (z^{*}-\frac{1}{2}\partial_{z})W & \partial_{z^{*}} &\leftrightarrow \frac{1}{2}(\partial_{q}+i\partial_{p})
+  a\rho         & \leftrightarrow \left(z+\frac{1}{2}\partial_{z^{*}}\right)W & z                & \leftrightarrow q+ip                                    \\
+  a^{\dag}\rho  & \leftrightarrow \left(z^{*}-\frac{1}{2}\partial_{z}\right)W & z^{*}            & \leftrightarrow q-ip                                    \\
+  \rho a        & \leftrightarrow \left(z-\frac{1}{2}\partial_{z^{*}}\right)W & \partial_{z}     & \leftrightarrow \frac{1}{2}(\partial_{q}-i\partial_{p}) \\
+  \rho a^{\dag} & \leftrightarrow \left(z^{*}-\frac{1}{2}\partial_{z}\right)W & \partial_{z^{*}} & \leftrightarrow \frac{1}{2}(\partial_{q}+i\partial_{p})
 \end{align*}
 
 Then the Von Neumann equation turns into
 \[\partial_{t}W=-\frac{\chi^{(2)}}{2}(2\alpha z^{*}\partial_{z}W+2\alpha^{*}z\partial_{z^{*}}W)\]
+
+Now we want to evaluate how the Wigner function evolves in time given the distribution at time $0$.
+That is, we want to calculate the trajectory $(q(t), p(t))$ that satisfies
+\[W(q(t),p(t);t)=W(q(0),p(0);0)\]
+for all time $t$.
+
+Differentiating both sides by $t$, we get, by the chain rule,
+\[\frac{dz}{dt}\partial_{z}W+\frac{dz^{*}}{dt}\partial_{z^{*}}W+\partial_{t}W=0\]
+if we view $W$ as a function of $z=q+ip$ and $z^{*}=q-ip$.
+
+By the time evolution equation, this equation can be summarized into
+\[\left(\frac{dz}{dt}-\chi^{(2)}\alpha z^{*}\right)\partial_{z}W+\left(\frac{dz^{*}}{dt}-\chi^{(2)}\alpha^{*} z\right)\partial_{z^{*}}W=0\]
+
+Therefore, if the trajectory $z(t)=q(t)+ip(t)$ satisfies
+\[\frac{dz}{dt}=\chi^{(2)}\alpha z^{*}\]
+then for any initial condition we can determine the Wigner function at time $t$.
+
+Separating into real and imaginary parts, we have
+\[
+  \frac{d}{dt}
+  \begin{bmatrix}
+    q \\
+    p
+  \end{bmatrix}
+  = \chi^{(2)}
+  \begin{bmatrix}
+    \Re(\alpha) & \Im(\alpha)  \\
+    \Im(\alpha) & -\Re(\alpha)
+  \end{bmatrix}
+  \begin{bmatrix}
+    q \\
+    p
+  \end{bmatrix}
+\]
+and solving this linear ode results in
+\[
+  \begin{bmatrix}
+    q \\
+    p
+  \end{bmatrix}
+  =
+  R_{\theta/2}
+  \begin{bmatrix}
+    e^{\chi^{(2)}rt} & 0                 \\
+    0                & e^{-\chi^{(2)}rt}
+  \end{bmatrix}
+  R_{-\theta/2}
+  \begin{bmatrix}
+    q(0) \\
+    p(0)
+  \end{bmatrix}
+\]
+when $\alpha=re^{i\theta}$ and $R_{\theta/2}$ is the rotation matrix by $\theta/2$.
+Thus, we have shown that for \textit{any} initial distribution the distribution is squeezed by
+$e^{\chi^{2}r}$.
+\section{Third-order Squeezing}
+\begin{align*}
+  i\hbar\partial_{t}\rho & = \hbar\omega[a^{\dag}a, \rho]+\hbar\chi^{(3)}\left[\frac{\alpha^{*}e^{3i\omega t}a^{3}-\alpha e^{-3i\omega t}(a^{\dag})^{3}}{2i}, \rho\right] \\
+                         & = \hbar\omega[a^{\dag}a, \rho]+\frac{\hbar\chi^{(3)}}{2i}([\alpha^{*}e^{3i\omega t}a^{3}, \rho]-[\alpha e^{-3i\omega t}(a^{\dag})^{3}, \rho])
+\end{align*}
+
+Let $\rho=\exp(-i\omega ta^{\dag}a)\tilde{\rho}\exp(i\omega ta^{\dag}a)$, then
+\[\partial_{t}\tilde{\rho}=-\frac{\chi^{(3)}}{2}(\alpha^{*}[a^{3},\tilde{\rho}]-\alpha[(a^{\dag})^{3},\tilde{\rho}])\]
+Now, the time evolution of the Wigner function is given by
+\[\partial_{t}W=-\frac{\chi^{(3)}}{2}\left(\alpha^{*}\left(3z^{2}\partial_{z^{*}}W+\frac{1}{4}\partial_{z^{*}}^{3}W\right)+\alpha\left(3(z^{*})^{2}\partial_{z}W+\frac{1}{4}\partial_{z}^{3}W\right)\right)\]
+
+We consider the rotated distribution $\tilde{W}(z,z^{*};t)\coloneq W(\omega z, \omega^{-1}z^{*};t)$ when $\omega=\exp(i2\pi/3)$ is the third root of unity.
+We will show that $\tilde{W}$ also satisfies the above equation.
+Note that
+\begin{align*}
+  \partial_{t}\tilde{W}(z,z^{*};t)     & =\partial_{t}\wigner               \\
+  \partial_{z}\tilde{W}(z,z^{*};t)     & =\omega\partial_{z}\wigner         \\
+  \partial_{z}^{2}\tilde{W}(z,z^{*};t) & =\omega^{2}\partial_{z}^{2}\wigner \\
+  \partial_{z}^{3}\tilde{W}(z,z^{*};t) & =\partial_{3}^{3}\wigner
+\end{align*}
+by the chain rule.
+
+Then we have:
+\begin{align*}
+  \partial_{t}\tilde{W}(z,z^{*};t) & =\partial_{t}\wigner                                                                                                                                      \\
+                                   & =-\frac{\chi^{(3)}}{2}\left( \alpha^{*}\left( 3(\omega z)^{2}\partial_{z^{*}}\wigner+\frac{1}{4}\partial_{z^{*}}^{3}\wigner\right)\right.                 \\
+                                   & \left.+\alpha\left(3(\omega^{-1}z^{*})^{2}\partial_{z}\wigner+\frac{1}{4}\partial_{z}^{3}\wigner\right)\right)                                            \\
+                                   & =-\frac{\chi^{(3)}}{2}\left( \alpha^{*}\left(3z^{2}\partial_{z^{*}}\tilde{W}(z,z^{*};t)+\frac{1}{2}\partial_{z^{*}}^{3}\tilde{W}(z,z^{*};t)\right)\right. \\
+                                   & \left.+\alpha\left( 3(z^{*})^{2}\partial_{z}\tilde{W}(z,z^{*};t)+\frac{1}{4}\partial_{z^{*}}^{3}\tilde{W}(z,z^{*};t)\right)\right)
+\end{align*}
+
+Thus, we know that
+\[\partial_{t}(W-\tilde{W})=-\frac{\chi^{(3)}}{2}\left(\alpha^{*}\left(3z^{2}\partial_{z^{*}}+\frac{1}{4}\partial_{z^{*}}^{3}\right)+\alpha\left(3(z^{*})^{2}\partial_{z}+\frac{1}{4}\partial_{z}^{3}\right)\right)(W-\tilde{W})\]
+If we have that for time $0$, $(W-\tilde{W})(q,p;0)=0$, that is, if the probability distribution is symmetric with respect to $120^{\circ}$ rotations, then for the rest of the time, $W-\tilde{W}$ stays $0$. That is, the symmetry is preserved in time.
+This can explain why the squeezed vacuum subject to the third order generation process displays a Wigner quasiprobability distribution that is shaped like an equilateral triangle.
+
 \printbibliography
 \end{document}
 %%% Local Variables: 
