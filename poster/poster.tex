@@ -106,8 +106,8 @@ Seoul National University}
         We can phrase the Maxwell equations in terms of the vector potential $\vec{A}$ and scalar potential $\phi$ that satisfies
         $\vec{E}=-\nabla\phi-\partial_{t}\vec{A}$ and $\vec{B}=\nabla\times\vec{A}$ under the Coulomb gauge by:
 
-        $(\nabla^{2}-\varepsilon_{0}\mu_{0}\partial_{t}^{2})\vec{A}=-\mu_{0}\vec{J}-\nabla(\partial_{t}\phi)$,
-        $\nabla^{2}\phi=-\rho$
+        \[(\nabla^{2}-\varepsilon_{0}\mu_{0}\partial_{t}^{2})\vec{A}=-\mu_{0}\vec{J}-\nabla(\partial_{t}\phi)\qquad
+        \nabla^{2}\phi=-\rho\]
 
         It turns out that interpreting the vector potential for each mode and polarization as the annihilation operator $\hat{a}$ gives the energy of the electric field perfectly.
         \begin{empheq}[box=\tcbhighmath]{align*}
@@ -121,7 +121,7 @@ Seoul National University}
       \end{block}
 
       \begin{block}{Background: Squeezing Operator and the Wigner Function}
-        The time evolution of a density operator in quantum mechanics can be represented by a unitary operation.
+        The time evolution of a density operator in quantum mechanics can be represented by a unitary transformation.
         We say that the density operator is squeezed when it is related to the original density operator by a unitary operator $S(\alpha)$ defined as below:
         \[S(\alpha)\coloneq\exp(i\cdot\Im\{\alpha^{*} \hat{a}^{2}\})\]
         The evolved density operator $S(\alpha)\rho S(\alpha)^{\dag}$ is said to be ``squeezed'' because the ``probability distribution'' is squeezed by the unitary transformation.
@@ -130,13 +130,17 @@ Seoul National University}
           W(q,p)=\frac{1}{\pi\hbar}\int_{-\infty}^{\infty}\bra{q-y}\rho\ket{q+y}e^{2ipy/\hbar}dy\qquad
           \text{Wigner function}
         \end{empheq}
-        The time evolution of the Wigner function is governed by the Von Neumann equation $i\hbar\partial_{t}\rho=[H,\rho]$ adapted to the Wigner function by the following correspondence:
+        The time evolution of the Wigner function is governed by the Von Neumann equation 
+        \[i\hbar\partial_{t}\rho=[H,\rho]\] 
+        adapted to the Wigner function by the following correspondence:
         \begin{align*}
           a\rho         & \leftrightarrow \left(z+\frac{1}{2}\partial_{z^{*}}\right)W & z                & \leftrightarrow q+ip                                    \\
           a^{\dag}\rho  & \leftrightarrow \left(z^{*}-\frac{1}{2}\partial_{z}\right)W & z^{*}            & \leftrightarrow q-ip                                    \\
           \rho a        & \leftrightarrow \left(z-\frac{1}{2}\partial_{z^{*}}\right)W & \partial_{z}     & \leftrightarrow \frac{1}{2}(\partial_{q}-i\partial_{p}) \\
           \rho a^{\dag} & \leftrightarrow \left(z^{*}-\frac{1}{2}\partial_{z}\right)W & \partial_{z^{*}} & \leftrightarrow \frac{1}{2}(\partial_{q}+i\partial_{p})
         \end{align*}
+        The remarkable part is that the complex expression with operators can be interpreted as a partial differential equation in phase space.
+        Also, since the operators $z$ and $\partial_{z^{*}}$ commute and vice versa, the time evolution equation for the Wigner function under squeezing can be calculated simply.
       \end{block} 
       \begin{block}{Background: Parametric Amplification}
         \begin{columns}
