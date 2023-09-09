@@ -1,38 +1,69 @@
-%! TEX program = xelatex
-\documentclass{article}
-\usepackage{geometry}
-\geometry{
- a4paper,
- total={170mm,257mm},
- left=20mm,
- top=20mm,
-}
-\usepackage{setspace} % setstretch
-\usepackage{tikz}
-\usepackage{graphicx}
-\usepackage{csquotes}
+% 서울대학교 전기·정보공학부 학사 학위논문 템플릿
+% 논문 작성 지침에 일부 부합하지 않는 부분이 있을 수 있습니다.
 
-\usepackage{tabularray}
-\UseTblrLibrary{booktabs}
-\UseTblrLibrary{counter}
+\documentclass[10pt,a4paper]{report}
+\usepackage{amssymb, amsmath, mathtools} % 수학
+\usepackage{siunitx} % SI단위
+\usepackage{graphicx} % 그림
+\usepackage{booktabs} % 표
+\usepackage{indentfirst} % 첫 문장 들여쓰기
 
-\usepackage{biblatex}
+\usepackage[style=ieee]{biblatex} % IEEE형식 참고문헌
 \addbibresource{citations.bib}
 
-%%% Math settings
-\usepackage{amssymb,amsmath,mathtools} % Before unicode-math
-\usepackage[math-style=TeX,bold-style=TeX]{unicode-math}
-\newtheorem{clm}{Claim}[section]
+\usepackage{tikz} % 그림 그리기
+\usetikzlibrary{positioning}
 
-%%% Font settings
-\setmainfont{Libertinus Serif}
-\setsansfont{Libertinus Sans}[Scale=MatchUppercase]
-\setmonofont{JuliaMono}[Scale=MatchLowercase]
-\setmathfont{Libertinus Math}
-\setmathfont{TeX Gyre Pagella Math}[range={\lbrace,\rbrace},Scale=1.1]
+\usepackage[hangul]{kotex} % 한글
+\usepackage[HWP]{dhucs-interword} % 아래아한글 자간
+\usehangulfontspec{default}
 
-% for complement
-\newcommand{\loverbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+%\usepackage[list=off]{bicaption} % 이중 캡션
+%\captionsetup[table][bi-second]{name=Table}
+%\captionsetup[figure][bi-second]{name=Figure}
+%\usepackage{subcaption}
+
+\def\papertitle{Numerical and Analytical Analysis of Squeezed Vacuum States of Light by Means of Wigner Functions} % 제목
+\def\paperdate{2023년 8월} % 발간(연월
+\def\paperauthor{이준협} % 저자
+\def\paperauthorspaced{이 준 협}
+\def\paperadvisor{정윤찬} % 지도교수
+\def\paperkeywords{압축 광원, 위상 공간 분석, 위그너 함수} % 국문 키워드
+\def\paperenglishkeywords{squeezed light, phase space method, Wigner function} % 영문 키워드
+
+\usepackage[pdfauthor={\paperauthor},
+            pdftitle={공학 학사 학위논문},
+            pdfsubject={\papertitle},
+            pdfkeywords={\paperkeywords, \paperenglishkeywords},
+            ]{hyperref} % PDF
+
+% 여백
+\addtolength{\hoffset}{-1in}
+\addtolength{\voffset}{-1in}
+\setlength{\topmargin}{30mm}
+\setlength{\headheight}{0mm}
+\setlength{\headsep}{0mm}
+\setlength{\marginparwidth}{0mm}
+\setlength{\marginparsep}{0mm}
+\setlength{\oddsidemargin}{25mm}
+\setlength{\textwidth}{160mm}
+\setlength{\textheight}{227mm}
+\setlength{\footskip}{20mm}
+\linespread{1.6} % double spacing 줄간격
+
+% \chapter*도 목차에 추가
+\makeatletter
+\def\@makeschapterhead#1{%
+  \addcontentsline{toc}{chapter}{#1}%
+  {\centering\parindent \z@
+    \normalfont
+    \interlinepenalty\@M
+    \Huge \bfseries  #1\par\nobreak
+    \vskip 40\p@
+  }}
+\makeatother
+
+\pagenumbering{alph} % 임시 알파벳 페이지 번호
 
 % rotated wigner function
 \newcommand*{\wigner}{
@@ -42,12 +73,77 @@ W(\omega z, \omega^{-1}z^{*};t)}
 \newcommand*\bra[1]{\langle{#1}|}
 \newcommand*\ket[1]{|{#1}\rangle}
 
-\title{Numerical and Analytical Analysis of Squeezed Vacuum States of Light by Means of Wigner Functions}
-\author{Joonhyup Lee}
-\date{}
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+{\normalfont\huge\bfseries}
+{Chapter \thechapter}{20pt}{\Huge}
+
 \begin{document}
-\maketitle
-\section{Introduction}
+\renewcommand{\abstractname}{초~록}
+\renewcommand{\figurename}{Figure}
+\renewcommand{\contentsname}{Contents}
+\renewcommand{\listtablename}{List of Tables}
+\renewcommand{\listfigurename}{List of Figures}
+
+\thispagestyle{empty} % 외표지
+\begin{center}
+    \fontsize{16pt}{19pt}\selectfont
+    공학 학사 학위논문 \\
+    \vspace{2cm}
+    \fontsize{21pt}{25pt}\selectfont
+    \papertitle \\
+    \vfill
+    \fontsize{16pt}{19pt}\selectfont
+    \paperdate \\
+    \vspace{4cm}
+    서울대학교 공과대학 \\
+    \vspace{1cm}
+    전기·정보공학부 \\
+    \vspace{1cm}
+    \paperauthorspaced
+\end{center}
+\newpage
+
+\thispagestyle{empty} % 인준지
+\begin{center}
+    \fontsize{21pt}{25pt}\selectfont
+    \papertitle \\
+    \vspace{1cm}
+    \fontsize{16pt}{19pt}\selectfont
+    지도교수 \paperadvisor \\
+    \vspace{1cm}
+    이 논문을 공학 학사학위 논문으로 제출함. \\
+    \vfill
+    서울대학교 공과대학 \\
+    \vspace{1cm}
+    전기·정보공학부 \\
+    \paperauthorspaced \\
+    \vspace{1cm}
+    \paperauthor의 학사 학위 논문을 인준함. \\
+    \vspace{1cm}
+    2023년 ~~~~~~월 ~~~~~~일 \\
+    \vspace{1cm}
+    지도교수 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(인)
+\end{center}
+\newpage
+
+\pagenumbering{roman} % 로마 숫자 페이지 번호
+\chapter*{Abstract}
+
+This thesis aims to illustrate the effectiveness of the phase space method by analyzing second- and higher-order squeezing of light using the Wigner quasiprobability distribution. Using numerical methods, we first illustrate the quasiprobability distribution of the photon under squeezing, which gives an intuitive picture of how the uncertainty is squeezed. Furthermore, by applying the phase space method, we prove that second-order squeezing applies for arbitrary initial distributions, and that higher order squeezing preserves the initial symmetry of the vacuum state of light.
+
+\vfill
+Keywords: \paperenglishkeywords
+
+{ % 목차
+\renewcommand\baselinestretch{1.3}
+\tableofcontents
+%\listoftables
+\listoffigures
+}
+
+\chapter{Introduction}\label{chap:introduction}
+\pagenumbering{arabic}
 Quantum mechanics tells us that the fundamental limitation of measurements is given by the uncertainty product $\Delta x\Delta p\ge\hbar/2$.
 Since all phenomena are inherently quantum, all generalized position and momentum variables cannot be measured with arbitrary precision.
 This is also true for the case of EM waves. Consider the TEM field given by:
@@ -73,8 +169,8 @@ Among the various quasiprobability distributions proposed, we use the Wigner fun
 Since phase space methods allow reasoning in terms of the probability distribution directly, we claim that this method allows one to develop intuition on why quantum systems behave the way they do.
 Concretely, the phase space method straightforwardly explains why the probability distribution of higher order squeezing display ``rotational symmetry'' in vacuum.
 
-\subsection{Quantization of the Maxwell Equations}
-Before delving into the equations that describe squeezing, we first need to reduce the Maxwell equations into the one-dimension simple harmonic oscillator(SHO).
+\section{Quantization of the Maxwell Equations}
+Before delving into the equations that describe squeezing, we first need to reduce the Maxwell equations into the one-dimensional simple harmonic oscillator(SHO).
 The derivations are from \cite{loudon}.
 
 We start with the description of Maxwell equations in terms of the vector potential $\vec{A}$ and scalar potential $\phi$.
@@ -96,7 +192,7 @@ It turns out that interpreting the vector potential for each mode and polarizati
 \end{align}
 That is, we only need to analyze the harmonic oscillator per mode/polarization.
 
-\subsection{Squeezing Operator and the Phase Space Method}
+\section{Squeezing Operator and the Phase Space Method}
 Next, the squeezing operator is explained in the Heisenberg picture, when the operators evolve in time. The derivations are from \cite{qnoise}.
 The time evolution of a density operator in quantum mechanics can be represented by a unitary transformation.
 We say that the density operator is squeezed when it is related to the original density operator by a unitary operator $S(\alpha)$ defined as below:
@@ -122,7 +218,7 @@ adapted to the Wigner function by the following correspondence:
 The remarkable part is that the complex expression with operators can be interpreted as a partial differential equation in phase space.
 Also, since the operators $z$ and $\partial_{z^{*}}$ commute and vice versa, the time evolution equation for the Wigner function under squeezing can be calculated simply.
 
-\subsection{Second Harmonic Generation}
+\section{Second Harmonic Generation}
 Finally, the physical process that is used to generate squeezed light is discussed in terms of the Hamiltonian of the system under the interaction picture.
 Figure 1 shows the simplified experimental setup for parametric amplification, when a strong pump photon with twice the frequency of the signal photon is injected in-phase, and thus generates the idler photon.
 \begin{figure}[htb]
@@ -158,10 +254,10 @@ Figure 1 shows the simplified experimental setup for parametric amplification, w
 \end{figure}
 
 It is known that the Hamiltonian inside the cavity between the signal and pump photons can be approximated under the interaction picture as:
-\begin{align}
+\begin{align*}
   \hat{H}=    & \hbar\omega (\hat{a}^{\dag}\hat{a}+\frac{1}{2})+\hbar\omega_{p}(\hat{a_{p}}^{\dag}\hat{a_{p}}+\frac{1}{2})+\underbrace{\frac{i\hbar\chi^{(2)}}{2}(\hat{a}^{2}\hat{a_{p}}^{\dag}-(\hat{a}^{\dag})^{2}\hat{a_{p}})}_{\text{second-order interaction}} \\
   \Rightarrow & \hbar\omega\hat{a}^{\dag}\hat{a}+\hbar\chi^{(2)}\Im\{\underbrace{\alpha^{*} e^{i\omega_{p}t}}_{\text{approx. }\hat{a_{p}}^{\dag}}\hat{a}^{2}\}
-\end{align}
+\end{align*}
 A transformation of coordinates simplifies this equation.
 Let $\rho=\exp(-i\omega ta^{\dag}a)\tilde{\rho}\exp(i\omega ta^{\dag}a)$, then
 \begin{equation}
@@ -170,8 +266,8 @@ Let $\rho=\exp(-i\omega ta^{\dag}a)\tilde{\rho}\exp(i\omega ta^{\dag}a)$, then
 which is exactly the squeezing operator.
 The squeezed vacuum state of light is generated when the signal photon starts at the state $\ket{0}$.
 
-\section{Numerical and Analytical Analysis}
-\subsection{Numerical Analysis}
+\chapter{Numerical and Analytical Analysis}\label{chap:main}
+\section{Numerical Analysis}
 As a first step to understanding the squeezed vacuum states of light, numerical simulation using the Python library QuTiP is employed\cite{qutip}.
 QuTiP simulates quantum phenomena by solving the ``Lindblad master equation'' in finite dimensional Hilbert space spanned by the number states $\{\ket{n}\}_{n=0}^{N}$.
 The Lindblad master equation is given by
@@ -179,9 +275,9 @@ The Lindblad master equation is given by
   \partial_{t}\rho=-\frac{i}{\hbar}\underbrace{[H_{sys},\rho]}_{\text{system}}+\underbrace{\frac{1}{2}\sum_{n}(2C_{n}\rho C_{n}^{\dag}-\rho C_{n}^{\dag}C_{n}-C_{n}^{\dag} C_{n}\rho)}_{\text{environment}}
 \end{equation}
 and this models the case when the system we are interested in interacts with the environment by operators $C_{n}$.
-Under the hood, QuTiP converts all the quantum operators to matrices, and perform matrix operations to solve the equation for $\rho$, then performs numerical integration of equation (8) to plot the Wigner function.
+Under the hood, QuTiP converts all the quantum operators to matrices, and perform matrix operations to solve the equation for $\rho$, then performs numerical integration of equation (1.8) to plot the Wigner function.
 To test out the effectiveness of this approach, we plug in $H_{sys}$ as is described above, and compare the results when $C_{n}=\sqrt{\gamma}\hat{a}$, that is, when the cavity loses photons to the surrounding environment.
-Plotting the Wigner function at time $5$ gives a figure:
+Plotting the Wigner function at time $5$ gives Figure (2.1).
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.4\textwidth]{squeezed_decay_0.5.png}
@@ -189,7 +285,7 @@ Plotting the Wigner function at time $5$ gives a figure:
 \end{figure}
 As can be expected, the Wigner function is transformed into an ellipse, and the lossy distribution displays a level of squeezing much smaller than the non-lossy situation.
 
-Furthermore, to simulate the Wigner function that is not calculable by hand, the Wigner function of a squeezed state generated by a third-order interaction was also simulated in Figure 3.
+Furthermore, to simulate the Wigner function that is not calculable by hand, the Wigner function of a squeezed state generated by a third-order interaction was also simulated in Figure 2.2.
 The $H_{sys}$ is given by
 \begin{equation}
   \hbar\omega\hat{a}^{\dag}\hat{a}+\hbar\chi^{(3)}\Im\{\underbrace{\alpha^{*} e^{i\omega_{p}t}}_{\text{approx. }\hat{a_{p}}^{\dag}}\hat{a}^{3}\}
@@ -198,13 +294,13 @@ when $\omega_{p}=3\omega$, since the interaction is of third order.
 \begin{figure}[htb]
   \centering
   \includegraphics[width=0.4\textwidth]{third_decay_0.5.png}
-  \caption{Squeezing by a second-order interaction, compared with the case where the photons are lost to the environment by $\sqrt{\gamma}\hat{a}$. Here, $\alpha$ in $H_{sys}$ is chosen to be $0.2$, and $\gamma$ is chosen to be $0.5$.}
+  \caption{Squeezing by a third-order interaction, compared with the case where the photons are lost to the environment by $\sqrt{\gamma}\hat{a}$. Here, $\alpha$ in $H_{sys}$ is chosen to be $0.2$, and $\gamma$ is chosen to be $0.5$.}
 \end{figure}
 Here, we can see that the Wigner function evolves to something that looks like an equilateral triangle.
 The remaining subsection explains analytically why the Wigner functions evolve to what they are predicted in the above figures.
 
-\subsection{Analyitical Analysis}
-\subsubsection{Second-order Squeezing}
+\section{Analytical Analysis}
+\subsection{Second-order Squeezing}
 In this section, we show that for \textit{all} initial distributions $W(q, p;0)$, the distribution after $t$ time steps result in $W(q_t,p_t;t)$, with $q_t,p_t$ being related to the original coordinates by a linear transformation.
 
 Recall that the Von Neumann equation for the density operator under second order interaction can be written as:
@@ -274,7 +370,7 @@ when $\alpha=re^{i\theta}$ and $R_{\theta/2}$ is the rotation matrix by $\theta/
 Thus, we have shown that for \textit{any} initial distribution the distribution is squeezed by
 $e^{\chi^{2}r}$. Such a general statement would've been hard to prove without employing the phase space method.
 
-\subsubsection{Third-order Squeezing}
+\subsection{Third-order Squeezing}
 In third order squeezing, the Von Neumann equation unfolds to:
 \begin{align*}
   i\hbar\partial_{t}\rho & = \hbar\omega[a^{\dag}a, \rho]+\hbar\chi^{(3)}\left[\frac{\alpha^{*}e^{3i\omega t}a^{3}-\alpha e^{-3i\omega t}(a^{\dag})^{3}}{2i}, \rho\right] \\
@@ -305,11 +401,11 @@ by the chain rule.
 
 Then we have:
 \begin{align*}
-  \partial_{t}\tilde{W}(z,z^{*};t) & =\partial_{t}\wigner                                                                                                                                      & (\because (22))   \\
+  \partial_{t}\tilde{W}(z,z^{*};t) & =\partial_{t}\wigner                                                                                                                                      & (\because (2.6))   \\
                                    & =-\frac{\chi^{(3)}}{2}\left( \alpha^{*}\left( 3(\omega z)^{2}\partial_{z^{*}}\wigner+\frac{1}{4}\partial_{z^{*}}^{3}\wigner\right)\right.                                     \\
-                                   & \left.+\alpha\left(3(\omega^{-1}z^{*})^{2}\partial_{z}\wigner+\frac{1}{4}\partial_{z}^{3}\wigner\right)\right)                                            & (\because(21))    \\
+                                   & \left.+\alpha\left(3(\omega^{-1}z^{*})^{2}\partial_{z}\wigner+\frac{1}{4}\partial_{z}^{3}\wigner\right)\right)                                            & (\because (2.5))    \\
                                    & =-\frac{\chi^{(3)}}{2}\left( \alpha^{*}\left(3z^{2}\partial_{z^{*}}\tilde{W}(z,z^{*};t)+\frac{1}{2}\partial_{z^{*}}^{3}\tilde{W}(z,z^{*};t)\right)\right.                     \\
-                                   & \left.+\alpha\left( 3(z^{*})^{2}\partial_{z}\tilde{W}(z,z^{*};t)+\frac{1}{4}\partial_{z^{*}}^{3}\tilde{W}(z,z^{*};t)\right)\right)                        & (\because(23-25))
+                                   & \left.+\alpha\left( 3(z^{*})^{2}\partial_{z}\tilde{W}(z,z^{*};t)+\frac{1}{4}\partial_{z^{*}}^{3}\tilde{W}(z,z^{*};t)\right)\right)                        & (\because (2.7-2.9))
 \end{align*}
 
 Thus, we know that
@@ -318,15 +414,24 @@ If we have that for time $0$, $(W-\tilde{W})(q,p;0)=0$, that is, if the probabil
 This can explain why the squeezed vacuum subject to the third order generation process displays a Wigner quasiprobability distribution that is shaped like an equilateral triangle.
 
 In fact, for an arbitrary order $n$, rotational symmetry with respect to $e^{i2\pi/n}$ will be preserved, since the same derivation steps applied above with the chain rule and the binomial formula will still hold.
+We can argue that, since at higher $n$ the distribution becomes more and more similar to a circle, the ``most effective'' squeezing happens at second order.
 Again, such an observation was possible only because the phase space method was employed.
 
-\section{Conclusion}
+\chapter{Conclusion}\label{chap:conclusion}
 
+We employed the phase space method, which solves the time evolution of the quasiprobability distribution in the $q$ and $p$ coordinates to analyze the squeezed (vacuum) states of light.
+By plotting the distribution at time $t$ using numerical methods, we first developed an intuition of how second- and higher-order interactions squeeze the signal photon.
+Next, by actually solving the time evolution equation in terms of the Wigner function, we derived exactly why the second-order squeezing is such an effective method in reducing uncertainty in one phase variable, since it displays exponential squeezing.
+Moreover, since for higher order squeezing the rotational symmetry of the initial Gaussian distribution in vacuum state is preserved, we were able to conclude that second-order squeezing is indeed the most practical type of squeezing.
+Since quantum operators and wave functions require integration to recover the probabilistic nature of quantum phenomena, the phase space method was most convenient in deriving the above conclusions.
+Thus, we conclude that the phase space method is a valid method to analyze quantum phenomena.
 
 \printbibliography
+
+\chapter*{\abstractname} % 초록
+
+이 논문은 압축 상태의 진공 광원의 위그너 함수를 분석하여 수치적으로 어떻게 광원의 진폭과 위상이 압축되는지 보여주고, 수학적으로도 왜 그러한 계산 결과가 나오는지 설명한다. 더 자세하게는, 2계 압축을 통해서는 임의의 초기상태에서 압축이 타원 형태로 일어난다는 것을 보이며, 3차 이상에서는 초기상태가 회전에 대해 대칭이면 그 대칭성이 보존됨을 보인다. 이로써 양자역학적 현상의 분석에 있어 위상 공간 분석 방법이 유용함을 주장한다.
+\vfill
+주요어 : \paperkeywords
+
 \end{document}
-%%% Local Variables: 
-%%% coding: utf-8
-%%% mode: latex
-%%% TeX-engine: xetex
-%%% End:
